@@ -4,16 +4,16 @@
   "license": "MIT",
   "minimum-stability": "stable",
   "require": {
-    "hhvm": "^4.17",
+    "hhvm": "^4.44",
     "hhvm/hsl": "^4.0",
-    "hhvm/hsl-experimental": "^4.0",
-    "hhvm/hhvm-autoload": "^2.0.0",
-    "facebook/hh-clilib": "^2.1.0"
+    "hhvm/hsl-experimental": "^4.50",
+    "hhvm/hhvm-autoload": "^3.0",
+    "facebook/hack-http-request-response-interfaces": "^0.3"
   },
   "require-dev": {
-    "hhvm/hacktest": "^1.6.1",
-    "facebook/fbexpect": "^2.6.0",
-    "hhvm/hhast": "^4.0.0"
+    "hhvm/hacktest": "^2.0",
+    "facebook/fbexpect": "^2.7",
+    "hhvm/hhast": "^4.0"
   },
   "autoload": {
     "psr-4": {

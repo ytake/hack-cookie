@@ -25,7 +25,7 @@ class Cookies {
   public function get(
     string $name
   ): ?Cookie {
-    if (! $this->has($name)) {
+    if (!$this->has($name)) {
       return null;
     }
     return $this->cookies[$name];
@@ -35,6 +35,23 @@ class Cookies {
     return vec(array_values($this->cookies));
   }
   
+  public function with(
+    Cookie $cookie
+  ): Cookies {
+    $clone = clone($this);
+    $clone->cookies[$cookie->getName()] = $cookie;
+    return $clone;
+  }
+
+  public function without(string $name): Cookies {
+    $clone = clone($this);
+    if (!$clone->has($name)) {
+      return $clone;
+    }
+    unset($clone->cookies[$name]);
+    return $clone;
+  }
+
   public function renderIntoCookieHeader(
     RequestInterface $request
   ): RequestInterface {

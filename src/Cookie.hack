@@ -7,19 +7,19 @@ class Cookie {
 
   public function __construct(
     private string $name,
-    private ?string $value = null
+    private string $value = ''
   ) {}
 
   public function getName() : string {
     return $this->name;
   }
 
-  public function getValue() : ?string {
+  public function getValue() : string {
     return $this->value;
   }
 
   public function withValue(
-    ?string $value = null
+    string $value = ''
   ) : Cookie {
     $clone = clone($this);
     $clone->value = $value;
@@ -34,7 +34,7 @@ class Cookie {
 
   public static function create(
     string $name,
-    ?string $value = null
+    string $value = ''
   ) : Cookie {
     return new self($name, $value);
   }

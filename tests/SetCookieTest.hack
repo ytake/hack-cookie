@@ -133,4 +133,24 @@ final class SetCookieTest extends HackTest {
     $setCookie = SetCookie::createExpired('expire_immediately');
     expect($setCookie->getExpires())->toBeLessThan(time());
   }
+
+  public function testShouldCreatesLongCookies(): void {
+    $setCookie = SetCookie::createRememberedForever('remember_forever');
+    $fourYearsFromNow = (new \DateTime('+4 years'))->getTimestamp();
+    expect($setCookie->getExpires())->toBeGreaterThan($fourYearsFromNow);
+  }
+
+  public function testShouldSameSiteModifier(): void {
+    $setCookie = SetCookie::create('foo', 'bar');
+    expect($setCookie->getSameSite())->toBeNull();
+    expect($setCookie->toString())->toBeSame('foo=bar');
+
+    $setCookie = $setCookie->withSameSite(SameSite::STRICT);
+    expect($setCookie->getSameSite())->toBeSame(SameSite::STRICT);
+    expect($setCookie->toString())->toBeSame('foo=bar; SameSite=Strict');
+
+    $setCookie = $setCookie->withoutSameSite();
+    expect($setCookie->getSameSite())->toBeNull();
+    expect($setCookie->toString())->toBeSame('foo=bar');
+  }
 }

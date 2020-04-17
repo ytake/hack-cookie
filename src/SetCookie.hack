@@ -47,6 +47,10 @@ class SetCookie {
     return $this->maxAge;
   }
 
+  public function getSameSite(): ?SameSiteEnum {
+    return $this->sameSite;
+  }
+
   public function withValue(
     string $value = ''
   ): SetCookie {

@@ -153,4 +153,17 @@ final class SetCookieTest extends HackTest {
     expect($setCookie->getSameSite())->toBeNull();
     expect($setCookie->toString())->toBeSame('foo=bar');
   }
+
+  public function testShouldInvalidExpiresFormatBeRejected(): void {
+    $setCookie = SetCookie::create('foo', 'bar');
+    expect(() ==> {
+      $setCookie->withExpires('potato');
+    })->toThrow(InvalidArgumentException::class, 'Invalid expires "potato" provided');
+  }
+
+  public function testEmptyCookieIsRejected(): void {
+    expect(() ==> {
+      SetCookie::fromSetCookieString('');
+    })->toThrow(InvalidArgumentException::class, 'The provided cookie string "" must have at least one attribute');
+  }  
 }

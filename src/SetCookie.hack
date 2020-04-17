@@ -160,6 +160,12 @@ class SetCookie {
 
   public static function fromSetCookieString(string $string): SetCookie {
     $rawAttributes = StringUtil::splitOnAttributeDelimiter($string);
+    if (C\count($rawAttributes) ===0) {
+      throw new \InvalidArgumentException(Str\format(
+        'The provided cookie string "%s" must have at least one attribute',
+        $string
+      ));
+    }
     $v = Vec\take($rawAttributes, 1);
     $rawAttribute = $v[0];
     $rawAttributes = Vec\drop($rawAttributes, 1);

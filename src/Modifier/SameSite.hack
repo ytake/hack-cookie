@@ -2,7 +2,7 @@ namespace Ytake\HackCookie\Modifier;
 
 final class SameSite {
 
-  private function __construct(
+  public function __construct(
     private string $value
   ){}
 

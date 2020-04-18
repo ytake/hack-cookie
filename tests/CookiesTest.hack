@@ -9,11 +9,11 @@ final class CookiesTest extends HackTest {
   public async function testShouldOverridesAndRemovesCookie(): Awaitable<void> {
     $cookies = new Cookies();
     $cookies = $cookies->with(Cookie::create('theme', 'blue'));
-    expect($cookies->get('theme')?->getValue())
+    expect($cookies->get('theme')->getValue())
       ->toBeSame('blue');
 
     $cookies = $cookies->with(Cookie::create('theme', 'red'));
-    expect($cookies->get('theme')?->getValue())
+    expect($cookies->get('theme')->getValue())
       ->toBeSame('red');
     $cookies = $cookies->without('theme');
     expect($cookies->has('theme'))->toBeFalse();
@@ -76,7 +76,7 @@ final class CookiesTest extends HackTest {
     string $cookieString, string $cookieName, Cookie $expectedCookie
   ): Awaitable<void> {
     $cookies = Cookies::fromCookieString($cookieString);
-    expect($cookies->get($cookieName)?->getName())->toBeSame($expectedCookie->getName());
-    expect($cookies->get($cookieName)?->getValue())->toBeSame($expectedCookie->getValue());
+    expect($cookies->get($cookieName)->getName())->toBeSame($expectedCookie->getName());
+    expect($cookies->get($cookieName)->getValue())->toBeSame($expectedCookie->getValue());
   }
 }

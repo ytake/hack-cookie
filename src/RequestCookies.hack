@@ -35,4 +35,21 @@ class RequestCookies {
       ->without($name)
       ->renderIntoCookieHeader($request);
   }
+
+  public static function modify(  
+    RequestInterface $request,
+    string $name,
+    (function(Cookie): Cookie) $modify
+  ): RequestInterface {
+
+    $cookies = Cookies::fromRequest($request);
+    $funcCookie = Cookie::create($name);
+    if ($cookies->has($name)) {
+      $funcCookie = $cookies->get($name);
+    }
+    $cookie  = $modify($funcCookie);
+    return $cookies
+      ->with($cookie)
+      ->renderIntoCookieHeader($request);
+    }
 }

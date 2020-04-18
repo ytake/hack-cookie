@@ -1,5 +1,7 @@
 # Hack Cookie
 
+[![Build Status](https://travis-ci.org/ytake/hack-cookie.svg?branch=master)](https://travis-ci.org/ytake/hack-cookie)
+
 Managing Cookies for [facebook/hack-http-request-response-interfaces](https://github.com/hhvm/hack-http-request-response-interfaces).
 
 Supported Only Hack library.

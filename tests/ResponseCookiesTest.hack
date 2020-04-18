@@ -1,10 +1,7 @@
 use type Facebook\HackTest\HackTest;
 use type Ytake\Hungrr\Response;
-use type Ytake\HackCookie\SetCookie;
-use type Ytake\HackCookie\SetCookies;
-use type Ytake\HackCookie\ResponseCookies;
+use type Ytake\HackCookie\{ResponseCookies, SetCookie, SetCookies};
 use namespace HH\Lib\IO;
-use namespace Facebook\Experimental\Http\Message;
 use function Facebook\FBExpect\expect;
 
 final class ResponseCookiesTest extends HackTest {
@@ -50,7 +47,7 @@ final class ResponseCookiesTest extends HackTest {
     $response = $response
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('theme', 'light')->toString()])
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('sessionToken', 'ENCRYPTED')->toString()])
-      ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('hello', 'world')->toString()]); 
+      ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('hello', 'world')->toString()]);
     $response = ResponseCookies::modify(
       $response,
       'hello',

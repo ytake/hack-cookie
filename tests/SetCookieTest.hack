@@ -1,12 +1,11 @@
-use type Ytake\HackCookie\SetCookie;
-use type Ytake\HackCookie\SameSite;
+use type Ytake\HackCookie\{SameSite, SetCookie};
 use type Facebook\HackTest\{DataProvider, HackTest};
 use function time;
 use function Facebook\FBExpect\expect;
 
 final class SetCookieTest extends HackTest {
-    
-  public function provideParsesFromSetCookieStringData(    
+
+  public function provideParsesFromSetCookieStringData(
   ): vec<shape('cookieString' => string, 'expectedSetCookie' => SetCookie)> {
     return vec[
       shape(
@@ -123,7 +122,7 @@ final class SetCookieTest extends HackTest {
   <<DataProvider('provideParsesFromSetCookieStringData')>>
   public function testShouldParsesCookieString(
     string $cookieString,
-    SetCookie $expectedSetCookie
+    SetCookie $_expectedSetCookie
   ): void {
     $setCookie = SetCookie::fromSetCookieString($cookieString);
     expect($cookieString)->toBeSame($setCookie->toString());
@@ -165,5 +164,5 @@ final class SetCookieTest extends HackTest {
     expect(() ==> {
       SetCookie::fromSetCookieString('');
     })->toThrow(InvalidArgumentException::class, 'The provided cookie string "" must have at least one attribute');
-  }  
+  }
 }

@@ -8,7 +8,7 @@ final class CookieTest extends HackTest {
   <<DataProvider('provideParseCookieStringData')>>
   public async function testShouldParseCookieData(
     string $cookieString,
-    string $expectedName, 
+    string $expectedName,
     ?string $expectedValue
   ): Awaitable<void> {
     $cookie = Cookie::oneFromCookiePair($cookieString);

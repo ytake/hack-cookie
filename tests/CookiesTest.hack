@@ -1,8 +1,6 @@
-use type Ytake\HackCookie\Cookie;
-use type Ytake\HackCookie\Cookies;
+use type Ytake\HackCookie\{Cookie, Cookies};
 use type Facebook\HackTest\{DataProvider, HackTest};
 use function Facebook\FBExpect\expect;
-use function array_key_exists;
 
 final class CookiesTest extends HackTest {
 

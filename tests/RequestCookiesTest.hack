@@ -1,8 +1,6 @@
 use type Facebook\HackTest\HackTest;
 use type Ytake\Hungrr\{Request, Uri};
-use type Ytake\HackCookie\Cookie;
-use type Ytake\HackCookie\Cookies;
-use type Ytake\HackCookie\RequestCookies;
+use type Ytake\HackCookie\{Cookie, Cookies, RequestCookies};
 use namespace HH\Lib\IO;
 use namespace Facebook\Experimental\Http\Message;
 use function Facebook\FBExpect\expect;
@@ -45,7 +43,7 @@ final class RequestCookiesTest extends HackTest {
     $request = RequestCookies::modify(
       $request,
       'hello',
-      ($cookie) ==> $cookie->withValue(strtoupper($cookie->getName()))
+      (Cookie $cookie) ==> $cookie->withValue(strtoupper($cookie->getName()))
     );
     expect($request->getHeaderLine('Cookie'))
       ->toBeSame('theme=light; sessionToken=RAPELCGRQ; hello=HELLO');

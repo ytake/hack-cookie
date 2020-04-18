@@ -1,8 +1,22 @@
+/**
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ *
+ * Copyright (c) 2020 Yuuki Takezawa
+ */
+ 
 namespace Ytake\HackCookie;
 
 use type DateTime;
 use type DateTimeInterface;
-use type Ytake\HackCookie\SameSite as SameSiteEnum;
 use type Ytake\HackCookie\Modifier\SameSite;
 use namespace HH\Lib\{C, Str, Vec};
 use function strtotime;
@@ -17,15 +31,15 @@ class SetCookie {
   private string $domain = '';
   private bool $secure = false;
   private bool $httpOnly = false;
-  private ?SameSiteEnum $sameSite;
+  private ?\Ytake\HackCookie\SameSite $sameSite;
 
   private function __construct(
-    private string $name, 
+    private string $name,
     private string $value = ''
   ) {}
 
   public static function create(
-    string $name, 
+    string $name,
     string $value = ''
   ): SetCookie {
     return new SetCookie($name, $value);
@@ -47,7 +61,7 @@ class SetCookie {
     return $this->maxAge;
   }
 
-  public function getSameSite(): ?SameSiteEnum {
+  public function getSameSite(): ?\Ytake\HackCookie\SameSite {
     return $this->sameSite;
   }
 
@@ -132,7 +146,7 @@ class SetCookie {
   }
 
   public function withSameSite(
-    SameSiteEnum $sameSite
+    \Ytake\HackCookie\SameSite $sameSite
   ): SetCookie {
     $clone = clone($this);
     $clone->sameSite = $sameSite;
@@ -146,7 +160,7 @@ class SetCookie {
   }
 
   public static function createRememberedForever(
-    string $name, 
+    string $name,
     string $value = ''
   ): SetCookie {
     return static::create($name, $value)->rememberForever();
@@ -206,7 +220,7 @@ class SetCookie {
           break;
         case 'samesite':
           $setCookie = $setCookie->withSameSite(
-            SameSiteEnum::assert($attributeValue)
+            \Ytake\HackCookie\SameSite::assert($attributeValue)
           );
           break;
       }
@@ -274,7 +288,7 @@ class SetCookie {
     if ($this->sameSite === null) {
       return $cookieStringParts;
     }
-    $ss = new SameSite(SameSiteEnum::assert($this->sameSite));
+    $ss = new SameSite(\Ytake\HackCookie\SameSite::assert($this->sameSite));
     $cookieStringParts[] = $ss->asString();
     return $cookieStringParts;
   }

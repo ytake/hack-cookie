@@ -1,6 +1,6 @@
 {
   "name": "ytake/hack-cookie",
-  "description": "Cookies for facebook/hack-http-request-response-interfaces.",
+  "description": "HHVM and Hack Cookies for facebook/hack-http-request-response-interfaces.",
   "keywords": ["http", "cookies", "hhvm", "hack"],
   "type": "library",
   "license": "MIT",

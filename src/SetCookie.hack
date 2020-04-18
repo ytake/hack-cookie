@@ -206,7 +206,7 @@ class SetCookie {
           break;
         case 'samesite':
           $setCookie = $setCookie->withSameSite(
-            SameSiteEnum::assert((string) $attributeValue)
+            SameSiteEnum::assert($attributeValue)
           );
           break;
       }
@@ -280,9 +280,7 @@ class SetCookie {
   }
 
   public function toString(): string {
-    $cookieStringParts = vec[
-      urlencode($this->name) . '=' . urlencode($this->value),
-    ];
+    $cookieStringParts = vec[urlencode($this->name) . '=' . urlencode($this->value),];
     $cookieStringParts = $this->appendFormattedDomainPartIfSet($cookieStringParts);
     $cookieStringParts = $this->appendFormattedPathPartIfSet($cookieStringParts);
     $cookieStringParts = $this->appendFormattedExpiresPartIfSet($cookieStringParts);

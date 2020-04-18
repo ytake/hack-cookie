@@ -1,7 +1,8 @@
 namespace Ytake\HackCookie;
 
+use type Ytake\HackCookie\Exception\InValidCookieException;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
-use namespace HH\Lib\{C, Dict, Vec};
+use namespace HH\Lib\{C, Dict, Str, Vec};
 use function array_values;
 
 class SetCookies {
@@ -29,11 +30,11 @@ class SetCookies {
   <<__Rx>>
   public function get(
     string $name
-  ): ?SetCookie {
-    if (!$this->has($name)) {
-      return null;
+  ): SetCookie {
+    if ($this->has($name)) {
+      return $this->setCookies[$name];
     }
-    return $this->setCookies[$name];
+    throw new InValidCookieException(Str\format("invalid cookie: %s", $name));
   }
 
   <<__Rx>>

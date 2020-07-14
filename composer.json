@@ -16,7 +16,7 @@
     "facebook/fbexpect": "^2.7",
     "hhvm/hhast": "^4.0",
     "hhvm/hsl-experimental": "^4.50",
-    "ytake/hungrr": "^0.10.0"
+    "ytake/hungrr": "^0.13.2"
   },
   "autoload": {
     "psr-4": {

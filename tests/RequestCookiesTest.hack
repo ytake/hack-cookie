@@ -8,7 +8,7 @@ use function Facebook\FBExpect\expect;
 final class RequestCookiesTest extends HackTest {
 
   public function testShouldGetCookieValue(): void {
-    list($read, $_) = IO\pipe_nd();
+    list($read, $_) = IO\pipe();
     $r = new Request(Message\HTTPMethod::GET, new Uri('/'), $read);
     $request = $r
       ->withHeader(Cookies::COOKIE_HEADER, vec['theme=light; sessionToken=RAPELCGRQ; hello=world']);
@@ -17,7 +17,7 @@ final class RequestCookiesTest extends HackTest {
   }
 
   public function testShouldSetCookie(): void {
-    list($read, $_) = IO\pipe_nd();
+    list($read, $_) = IO\pipe();
     $r = new Request(Message\HTTPMethod::GET, new Uri('/'), $read);
     $request = $r
       ->withHeader(Cookies::COOKIE_HEADER, vec['theme=light; sessionToken=RAPELCGRQ; hello=world']);
@@ -27,7 +27,7 @@ final class RequestCookiesTest extends HackTest {
   }
 
   public function testShouldRemoveCookie(): void {
-    list($read, $_) = IO\pipe_nd();
+    list($read, $_) = IO\pipe();
     $r = new Request(Message\HTTPMethod::GET, new Uri('/'), $read);
     $request = $r
       ->withHeader(Cookies::COOKIE_HEADER, vec['theme=light; sessionToken=RAPELCGRQ; hello=world']);
@@ -36,7 +36,7 @@ final class RequestCookiesTest extends HackTest {
   }
 
   public function testShouldModifiesCookie(): void {
-    list($read, $_) = IO\pipe_nd();
+    list($read, $_) = IO\pipe();
     $r = new Request(Message\HTTPMethod::GET, new Uri('/'), $read);
     $request = $r
       ->withHeader(Cookies::COOKIE_HEADER, vec['theme=light; sessionToken=RAPELCGRQ; hello=world']);

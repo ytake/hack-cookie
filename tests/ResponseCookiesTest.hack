@@ -7,7 +7,7 @@ use function Facebook\FBExpect\expect;
 final class ResponseCookiesTest extends HackTest {
 
   public function testShouldGetCookies(): void {
-    list($_, $w) = IO\pipe_nd();
+    list($_, $w) = IO\pipe();
     $response = new Response($w);
     $response = $response
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('theme', 'light')->toString()])
@@ -18,7 +18,7 @@ final class ResponseCookiesTest extends HackTest {
   }
 
   public function testShouldSetCookies(): void {
-    list($_, $w) = IO\pipe_nd();
+    list($_, $w) = IO\pipe();
     $response = new Response($w);
     $response = $response
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('theme', 'light')->toString()])
@@ -30,7 +30,7 @@ final class ResponseCookiesTest extends HackTest {
   }
 
   public function testShouldRemoveCookies(): void {
-    list($_, $w) = IO\pipe_nd();
+    list($_, $w) = IO\pipe();
     $response = new Response($w);
     $response = $response
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('theme', 'light')->toString()])
@@ -42,7 +42,7 @@ final class ResponseCookiesTest extends HackTest {
   }
 
   public function testShouldModifiesCookies(): void {
-    list($_, $w) = IO\pipe_nd();
+    list($_, $w) = IO\pipe();
     $response = new Response($w);
     $response = $response
       ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, vec[SetCookie::create('theme', 'light')->toString()])
